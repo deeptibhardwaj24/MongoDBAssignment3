@@ -1,0 +1,11 @@
+@(loginForm:Form[(String,String)])(implicit msg:Messages, flash:Flash)
+@views.html.main("Login"){
+<div id ="loginemployee"><center>
+    @helper.form(action=routes.EmployeeController.validate(),'id->"loginForm") {
+    @helper.inputText(loginForm("name"), '_label -> "NAME",'placeholder -> "xyz",'id -> "id" )
+    @helper.inputPassword(loginForm("password"), '_label -> "PASSWORD",'placeholder -> "***",'id -> "password" )
+    @flash.get("error")
+    <center> <input class= "btn btn-primary" type="submit" value="Submit"/></center></center>
+    }
+</div>}
+
