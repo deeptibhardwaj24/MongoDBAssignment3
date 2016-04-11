@@ -1,14 +1,16 @@
-@(addForm:Form[(String,String,String,String,String,String)])(implicit msg:Messages)
+@(addForm:Form[(String,String,String,String,String,String)])(implicit msg:Messages, flash: Flash)
 @views.html.main("Add user data"){
-<div id ="addemployee"><center>
+<div><center>
     @helper.form(action=routes.EmployeeController.register(),'id->"addForm") {
     @helper.inputText(addForm("name"), '_label -> "NAME",'placeholder -> "xyz",'id -> "name" )
     @helper.inputPassword(addForm("password"), '_label -> "PASSWORD",'placeholder -> "***",'id -> "password" )
     @helper.inputText(addForm("address"), '_label -> "ADDRESS", 'placeholder -> "USA" ,'id -> "address")
     @helper.inputText(addForm("dob"), '_label -> "DATEOFBIRTH",'placeholder -> "24/06/1992",'id -> "dob" )
-    @helper.inputText(addForm("joining"), '_label -> "JOINING", 'placeholder -> "21/01/2016", 'id -> "joining" )
+    @helper.inputText(addForm("joiningDate"), '_label -> "JOINING", 'placeholder -> "21/01/2016", 'id -> "joiningDate" )
     @helper.inputText(addForm("designation"), '_label -> "DESIGNATION", 'placeholder -> "trainee", 'id -> "designation" )
-     <input class= "btn btn-primary" type="submit" value="Submit"/> </center>
-    }
-</div>}
+    @flash.get("error")
+    <input class= "btn btn-primary" type="submit" value="Submit"/>
+    }</center>
+</div>
+}
 
