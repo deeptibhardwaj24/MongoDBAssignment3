@@ -47,7 +47,7 @@ class EmployeeController extends Controller{
   def register() = Action.async{ implicit request =>
     addForm.bindFromRequest.fold(
 
-      badForm => Future(Redirect(routes.EmployeeController.show).flashing("error" -> "invalid form!!")),
+      badForm => Future(Redirect(routes.EmployeeController.show).flashing("adderror" -> "invalid form!!")),
       validForm => {
         val name = validForm._1
         val password = validForm._2
@@ -65,7 +65,7 @@ class EmployeeController extends Controller{
     validForm => {
       val result = Await.result(employeeCollection.find(BSONDocument("name" ->validForm._1 , "password" ->validForm._2)).one[BSONDocument], 10.seconds)
       if(result.isDefined)
-        Ok("Employee successfully added!! :)")
+        Ok("Employee successfully logged in!! :)")
       else
-       Redirect(routes.EmployeeController.login).flashing("error" -> "wrong name or paswsword")
+       Redirect(routes.EmployeeController.login).flashing("loginerror" -> "incorrect name or paswsword")
     })}}

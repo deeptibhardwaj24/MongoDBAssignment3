@@ -1,15 +1,22 @@
 @(addForm:Form[(String,String,String,String,String,String)])(implicit msg:Messages, flash: Flash)
+
 @views.html.main("Add user data"){
-<div><center>
+
+<p class =>already registered?</p><a id="login"  href="/login">LOGIN</a>
+<center>
     @helper.form(action=routes.EmployeeController.register(),'id->"addForm") {
-    @helper.inputText(addForm("name"), '_label -> "NAME",'placeholder -> "xyz",'id -> "name" )
-    @helper.inputPassword(addForm("password"), '_label -> "PASSWORD",'placeholder -> "***",'id -> "password" )
-    @helper.inputText(addForm("address"), '_label -> "ADDRESS", 'placeholder -> "USA" ,'id -> "address")
-    @helper.inputText(addForm("dob"), '_label -> "DATEOFBIRTH",'placeholder -> "24/06/1992",'id -> "dob" )
-    @helper.inputText(addForm("joiningDate"), '_label -> "JOINING", 'placeholder -> "21/01/2016", 'id -> "joiningDate" )
-    @helper.inputText(addForm("designation"), '_label -> "DESIGNATION", 'placeholder -> "trainee", 'id -> "designation" )
-    @flash.get("error")
+    @helper.inputText(addForm("name"),'placeholder -> "xyz",'id -> "name",'_showConstraints -> false )
+    @helper.inputPassword(addForm("password"), 'placeholder -> "***",'id -> "password" ,'_showConstraints -> false)
+    @helper.inputText(addForm("address"),  'placeholder -> "USA" ,'id -> "address",'_showConstraints -> false)
+    @helper.inputText(addForm("dob"),'placeholder -> "24/06/1992",'id -> "dob" ,'_showConstraints -> false )
+    @helper.inputText(addForm("joiningDate"),  'placeholder -> "21/01/2016", 'id -> "joiningDate" ,'_showConstraints -> false)
+    @helper.inputText(addForm("designation"),  'placeholder -> "trainee", 'id -> "designation" ,'_showConstraints -> false)
+    @flash.get("adderror")
     <input class= "btn btn-primary" type="submit" value="Submit"/>
+
+
+
+
     }</center>
 </div>
 }
